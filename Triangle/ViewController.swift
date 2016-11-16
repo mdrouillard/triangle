@@ -1,25 +1,37 @@
-//
-//  ViewController.swift
-//  Triangle
-//
-//  Created by Mark Drouillard on 11/16/16.
-//  Copyright © 2016 Mark Drouillard. All rights reserved.
-//
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate{
 
+    @IBOutlet weak var pointTextField: UITextField!
+    @IBOutlet weak var dueTextField: UITextField!
+    @IBOutlet weak var teamTextField: UITextField!
+
+  
+
+    // MARK: Text Field Delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+
+    
+    // MARK: Touch events
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        pointTextField.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func calculateButton(_ sender: Any) {
+        print(pointTextField, dueTextField, teamTextField)
+        
     }
-
-
 }
 
