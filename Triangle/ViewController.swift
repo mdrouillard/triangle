@@ -6,8 +6,15 @@ class ViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var pointTextField: UITextField!
     @IBOutlet weak var dueTextField: UITextField!
     @IBOutlet weak var teamTextField: UITextField!
+    @IBOutlet weak var platformTextField: UITextField!
+    @IBOutlet weak var pointValueTextField: UITextField!
+    
+    @IBOutlet weak var showWeeks: UILabel!
+    
+    // Made some labels for debugging
+    @IBOutlet weak var showPoints: UILabel!
+    @IBOutlet weak var showResults: UITextView!
 
-  
 
     // MARK: Text Field Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -23,15 +30,32 @@ class ViewController: UIViewController, UITextFieldDelegate{
     }
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         pointTextField.delegate = self
-    }
-    
-    @IBAction func calculateButton(_ sender: Any) {
-        print(pointTextField, dueTextField, teamTextField)
         
     }
-}
+    
+    
+    
+    @IBAction func calculateButton(_ sender: Any) {
+        // Figure out how many weeks of works exist
+        
+        let points = Int(pointTextField.text!)
+        let developers = Int(teamTextField.text!)
+        let platforms = Int(platformTextField.text!)
+        let pointValue = Int(pointValueTextField.text!)
+        
+        
+        let devDays = points!/pointValue!
+        let platformDays = devDays/platforms!
+        let devPerPlatform = developers!/platforms!
+        let weeksToFinish = platformDays/devPerPlatform/5
+            
+        showWeeks.text! = "That's \(weeksToFinish) week(s) for your team"
+        
+    }
 
+}
