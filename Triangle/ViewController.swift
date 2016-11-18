@@ -43,10 +43,10 @@ class ViewController: UIViewController, UITextFieldDelegate{
     @IBAction func calculateButton(_ sender: Any) {
         // Figure out how many weeks of works exist
         
-        let points = Int(pointTextField.text!)
-        let developers = Int(teamTextField.text!)
-        let platforms = Int(platformTextField.text!)
-        let pointValue = Int(pointValueTextField.text!)
+        let points = Double(pointTextField.text!)
+        let developers = Double(teamTextField.text!)
+        let platforms = Double(platformTextField.text!)
+        let pointValue = Double(pointValueTextField.text!)
         
         
         let devDays = points!/pointValue!
