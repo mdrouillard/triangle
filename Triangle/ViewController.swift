@@ -11,9 +11,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var showWeeks: UILabel!
     
-    // Made some labels for debugging
-    @IBOutlet weak var showPoints: UILabel!
-    @IBOutlet weak var showResults: UITextView!
 
 
     // MARK: Text Field Delegate
@@ -41,7 +38,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     
     @IBAction func calculateButton(_ sender: Any) {
-        // Figure out how many weeks of works exist
+        // Figure out how many weeks of works exist based on points, team size and number of platforms
         
         let points = Double(pointTextField.text!)
         let developers = Double(teamTextField.text!)
@@ -54,7 +51,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         let devPerPlatform = developers!/platforms!
         let weeksToFinish = platformDays/devPerPlatform/5
             
-        showWeeks.text! = "That's \(weeksToFinish) week(s) for your team"
+        showWeeks.text! = "That's \(weeksToFinish) week(s) of work for your team"
         
     }
 
