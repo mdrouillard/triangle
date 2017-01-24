@@ -40,18 +40,29 @@ class ViewController: UIViewController, UITextFieldDelegate{
     @IBAction func calculateButton(_ sender: Any) {
         // Figure out how many weeks of works exist based on points, team size and number of platforms
         
-        let points = Double(pointTextField.text!)
-        let developers = Double(teamTextField.text!)
-        let platforms = Double(platformTextField.text!)
-        let pointValue = Double(pointValueTextField.text!)
-        
-        
-        let devDays = points!/pointValue!
-        let platformDays = devDays/platforms!
-        let devPerPlatform = developers!/platforms!
-        let weeksToFinish = platformDays/devPerPlatform/5
+      
+        guard let pointsString = pointTextField.text, let points = Double(pointsString) else {
             
-        showWeeks.text! = "That's \(weeksToFinish) week(s) of work for your team"
+            return
+        }
+        guard let developersString = teamTextField.text, let developers = Double(developersString) else {
+            return
+        }
+        guard let platformsString = platformTextField.text, let platforms = Double(platformsString) else {
+            return
+        }
+        
+        guard let pointValueString = pointValueTextField.text, let pointValue = Double(pointValueString) else {
+            return
+        }
+        
+    
+        
+        let devDays = points/pointValue
+        let devPerPlatform = developers/platforms
+        let weeksToFinish = devDays/devPerPlatform/5
+            
+        showWeeks.text = "That's \(weeksToFinish) week(s) of work for your team"
         
     }
 
