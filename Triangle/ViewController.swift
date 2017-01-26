@@ -11,8 +11,19 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var showWeeks: UILabel!
     
-
-
+    @IBAction func textFieldEditing(_ sender: UITextField) {
+       let datePickerView:UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(ViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
+    }
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dueTextField.text = dateFormatter.string(from: sender.date)
+    }
+    
     // MARK: Text Field Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -30,8 +41,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pointTextField.delegate = self
         
     }
     
