@@ -80,7 +80,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUV-l3-WOH">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUV-l3-WOH">
                                 <rect key="frame" x="155" y="595" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Calculate"/>
@@ -113,6 +113,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="calculateButton" destination="hUV-l3-WOH" id="hVB-iA-nS3"/>
                         <outlet property="dueTextField" destination="5Gx-NU-fjf" id="VG7-HQ-x4q"/>
                         <outlet property="platformTextField" destination="xSc-LW-FEF" id="omZ-8W-T10"/>
                         <outlet property="pointTextField" destination="g7n-XP-wDa" id="gjd-rM-Rbr"/>

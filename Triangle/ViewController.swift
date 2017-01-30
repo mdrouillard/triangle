@@ -10,6 +10,10 @@ class ViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var pointValueTextField: UITextField!
     
     @IBOutlet weak var showWeeks: UILabel!
+    @IBOutlet weak var calculateButton: UIButton!
+    
+    
+    // MARK: Due date field date picker
     
     @IBAction func textFieldEditing(_ sender: UITextField) {
        let datePickerView:UIDatePicker = UIDatePicker()
@@ -42,16 +46,42 @@ class ViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pointTextField.delegate = self
+        teamTextField.delegate = self
+        pointValueTextField.delegate = self
+        platformTextField.delegate = self
     }
     
     
+    // MARK: Enable button ... this works but can't figure out how to get the unwrapped values. There has to be a better way to do this
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let pointsPresent = pointTextField.text else {
+            return
+        }
+        guard let developersPresent = teamTextField.text else {
+            return
+        }
+        
+        guard let valuePresent = pointValueTextField.text else {
+            return
+        }
+        
+        guard let platformPresent = platformTextField.text else {
+            return
+        }
+        
+        if pointsPresent != "" && developersPresent != "" && valuePresent != "" && platformPresent != "" {
+            calculateButton.isEnabled = true
+           }
+    }
     
+
+
     @IBAction func calculateButton(_ sender: Any) {
         // Figure out how many weeks of works exist based on points, team size and number of platforms
         
       
-        guard let pointsString = pointTextField.text, let points = Double(pointsString) else {
-            
+       guard let pointsString = pointTextField.text, let points = Double(pointsString) else {
             return
         }
         guard let developersString = teamTextField.text, let developers = Double(developersString) else {
@@ -64,8 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         guard let pointValueString = pointValueTextField.text, let pointValue = Double(pointValueString) else {
             return
         }
-        
-    
+ 
         
         let devDays = points/pointValue
         let devPerPlatform = developers/platforms
