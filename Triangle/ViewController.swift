@@ -45,7 +45,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        // Text field delegates for enabling the calculate button
         pointTextField.delegate = self
         teamTextField.delegate = self
         pointValueTextField.delegate = self
