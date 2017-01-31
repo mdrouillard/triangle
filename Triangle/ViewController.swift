@@ -13,6 +13,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var calculateButton: UIButton!
     
     
+    // need to store the date in var and use it for the calcs
+    
     // MARK: Due date field date picker
     
     @IBAction func textFieldEditing(_ sender: UITextField) {
@@ -71,9 +73,16 @@ class ViewController: UIViewController, UITextFieldDelegate{
             return
         }
         
-        if pointsPresent != "" && developersPresent != "" && valuePresent != "" && platformPresent != "" {
-            calculateButton.isEnabled = true
-           }
+        
+        let isFormValid: Bool
+        
+        if pointsPresent.isEmpty || developersPresent.isEmpty || valuePresent.isEmpty || platformPresent.isEmpty {
+            isFormValid = false
+        } else {
+            isFormValid = true
+        }
+        
+        calculateButton.isEnabled = isFormValid
     }
     
 
