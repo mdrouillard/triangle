@@ -1,6 +1,15 @@
 
 import UIKit
 
+// Global variables
+var dueDate: Date? = nil
+var weeksOfWork = ""
+var isItPossible = ""
+var timeOptions = ""
+var scopeOptions = ""
+var teamOptions = ""
+
+
 class ViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var pointTextField: UITextField!
@@ -14,6 +23,14 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     
     // need to store the date in var and use it for the calcs
+    let today = Date()
+    
+    func daysBetweenDates(startDate: Date, endDate: Date) -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([Calendar.Component.day], from: startDate, to: endDate)
+        return components.day!
+    }
+    
     
     // MARK: Due date field date picker
     
@@ -28,6 +45,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dueTextField.text = dateFormatter.string(from: sender.date)
+        dueDate = sender.date
     }
     
     // MARK: Text Field Delegate
@@ -109,9 +127,69 @@ class ViewController: UIViewController, UITextFieldDelegate{
         let devDays = points/pointValue
         let devPerPlatform = developers/platforms
         let weeksToFinish = devDays/devPerPlatform/5
+  //      let oneDevCapacity = pointValue * 5
+        
             
         showWeeks.text = "That's \(weeksToFinish) week(s) of work for your team"
+        weeksOfWork = "That's \(weeksToFinish) week(s) of work for your team"
+
         
+        // calculation based on due date. Currently unwrapping with ! again.
+        if dueDate != nil {
+        let NumOfDays: Int = daysBetweenDates(startDate: Date(), endDate: dueDate!)
+        print("Num of Days: \(NumOfDays)")
+            
+            
+        // calculate time until due date
+        let daysUntilDue = Double(NumOfDays)
+        let weeksUntilDue = Double(NumOfDays)/5
+            print("Num of weeks until due date:\(weeksUntilDue)")
+            print("Num of days until due date: \(daysUntilDue)")
+        
+        // how many weeks of work total
+        let weekDelta = abs(weeksToFinish - weeksUntilDue)
+        print("That's \(weekDelta) week(s) of work based on your current team size")
+            
+        
+        // team size based on due date
+            let canTeamFinish: Bool
+            if weeksUntilDue < weeksToFinish {
+                canTeamFinish = false
+                isItPossible = "You should be able to make the date!"
+            } else {
+                canTeamFinish = true
+                isItPossible = "You're not going to make the deadline!"
+            }
+    
+            
+            // Calculate scenarios
+            let dayDelta = weekDelta * 5
+            let pointOverage = dayDelta * pointValue
+ //           let teamDelta =
+
+
+            
+            if canTeamFinish == false {
+                timeOptions = "You'll need to move your delivery date \(dayDelta) to complete all the scope"
+                scopeOptions = "You'll need to cut \(pointOverage) points per platform to make your due date of \(dueTextField.text) for that amount of work"
+ //               teamOptions = "I've gotta round this up but you need to add \(teamDelta) per platform to make your due date"
+                
+                // print to debug:
+                print("There are \(dayDelta) days more work than the team can complete")
+                print("You'll need to cut \(pointOverage) points per platform to make your due date for that amount of work")
+ //               print("I've gotta round this up but you need to add \(teamDelta) per platform to make your due date")
+
+                
+            } else {
+                timeOptions = "You could release \(dayDelta) days earlier than your planned due date"
+                scopeOptions = "You could add \(pointOverage) points per platform and still make your due date of \(dueTextField.text)"
+ //               teamOptions = "I've gotta round this up but you can subtract \(teamDelta) per platform to make your due date"
+                
+                print("There are \(dayDelta) days more time than there is of scope")
+                print("You could add \(pointOverage) points per platform and still make your due date")
+//                print("I've gotta round this up but you can subtract \(teamDelta) per platform to make your due date")
+            }
+        }
     }
 
 }
