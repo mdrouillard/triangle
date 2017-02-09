@@ -21,6 +21,10 @@ class ViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var showWeeks: UILabel!
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var enoughRunway: UILabel!
+    @IBOutlet weak var scopeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    
     
     // need to store the date in var and use it for the calcs
     let today = Date()
@@ -136,7 +140,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         // calculation based on due date. Currently unwrapping with ! again.
         if dueDate != nil {
         let NumOfDays: Int = daysBetweenDates(startDate: Date(), endDate: dueDate!)
-        print("Num of Days: \(NumOfDays)")
+        print("Num of Days until due date: \(NumOfDays)")
             
             
         // calculate time until due date
@@ -147,17 +151,17 @@ class ViewController: UIViewController, UITextFieldDelegate{
         
         // how many weeks of work total
         let weekDelta = abs(weeksToFinish - weeksUntilDue)
-        print("That's \(weekDelta) week(s) of work based on your current team size")
+        print("That's a \(weekDelta) week delta of work based on your current team size")
             
         
         // team size based on due date
             let canTeamFinish: Bool
             if weeksUntilDue < weeksToFinish {
                 canTeamFinish = false
-                isItPossible = "You should be able to make the date!"
+                isItPossible = "You're not going to make the deadline!"
             } else {
                 canTeamFinish = true
-                isItPossible = "You're not going to make the deadline!"
+                isItPossible = "You should be able to make the date!"
             }
     
             enoughRunway.text = isItPossible
@@ -184,6 +188,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
                 print("There are \(dayDelta) days more time than there is of scope")
                 print("You could add \(pointOverage) points per platform and still make your due date")
             }
+            scopeLabel.text = scopeOptions
+            timeLabel.text = timeOptions
             
         }
     }

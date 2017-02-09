@@ -116,6 +116,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scope label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzq-MU-5Pa">
+                                <rect key="frame" x="17" y="246" width="341" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkd-Kr-1Cd">
+                                <rect key="frame" x="13" y="501" width="347" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -127,8 +141,10 @@
                         <outlet property="platformTextField" destination="xSc-LW-FEF" id="omZ-8W-T10"/>
                         <outlet property="pointTextField" destination="g7n-XP-wDa" id="gjd-rM-Rbr"/>
                         <outlet property="pointValueTextField" destination="1W2-R2-2ZF" id="tMJ-ZH-QAi"/>
+                        <outlet property="scopeLabel" destination="Tzq-MU-5Pa" id="J43-c4-hXk"/>
                         <outlet property="showWeeks" destination="ZFJ-PO-fin" id="Vuc-0m-8lk"/>
                         <outlet property="teamTextField" destination="QJl-G4-uA1" id="Bca-FZ-UX2"/>
+                        <outlet property="timeLabel" destination="xkd-Kr-1Cd" id="bgP-bt-8RK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
