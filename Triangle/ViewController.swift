@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var showWeeks: UILabel!
     @IBOutlet weak var calculateButton: UIButton!
-    
+    @IBOutlet weak var enoughRunway: UILabel!
     
     // need to store the date in var and use it for the calcs
     let today = Date()
@@ -127,7 +127,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
         let devDays = points/pointValue
         let devPerPlatform = developers/platforms
         let weeksToFinish = devDays/devPerPlatform/5
-  //      let oneDevCapacity = pointValue * 5
         
             
         showWeeks.text = "That's \(weeksToFinish) week(s) of work for your team"
@@ -161,34 +160,31 @@ class ViewController: UIViewController, UITextFieldDelegate{
                 isItPossible = "You're not going to make the deadline!"
             }
     
+            enoughRunway.text = isItPossible
             
             // Calculate scenarios
             let dayDelta = weekDelta * 5
             let pointOverage = dayDelta * pointValue
- //           let teamDelta =
 
 
             
             if canTeamFinish == false {
                 timeOptions = "You'll need to move your delivery date \(dayDelta) to complete all the scope"
                 scopeOptions = "You'll need to cut \(pointOverage) points per platform to make your due date of \(dueTextField.text) for that amount of work"
- //               teamOptions = "I've gotta round this up but you need to add \(teamDelta) per platform to make your due date"
                 
                 // print to debug:
                 print("There are \(dayDelta) days more work than the team can complete")
                 print("You'll need to cut \(pointOverage) points per platform to make your due date for that amount of work")
- //               print("I've gotta round this up but you need to add \(teamDelta) per platform to make your due date")
 
                 
             } else {
                 timeOptions = "You could release \(dayDelta) days earlier than your planned due date"
                 scopeOptions = "You could add \(pointOverage) points per platform and still make your due date of \(dueTextField.text)"
- //               teamOptions = "I've gotta round this up but you can subtract \(teamDelta) per platform to make your due date"
                 
                 print("There are \(dayDelta) days more time than there is of scope")
                 print("You could add \(pointOverage) points per platform and still make your due date")
-//                print("I've gotta round this up but you can subtract \(teamDelta) per platform to make your due date")
             }
+            
         }
     }
 
